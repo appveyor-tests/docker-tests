@@ -1,0 +1,4 @@
+test_script:
+- where docker-compose
+
+build: off
