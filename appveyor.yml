@@ -1,4 +1,8 @@
 test_script:
 - where docker-compose
+- ps: docker images
+- ps: docker run microsoft/windowsservercore cmd /c dir
+- ps: docker run microsoft/nanoserver cmd /c dir
+- ps: docker ps -a -q
 
 build: off
