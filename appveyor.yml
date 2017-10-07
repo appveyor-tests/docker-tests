@@ -3,17 +3,16 @@ test_script:
 
 - ps: $images = (docker images)
 - ps: $images
-- ps: $images.indexOf("windowsservercore")
-- ps: $images.indexOf("nanoserver")
-- ps: if ($images.indexOf('microsoft/windowsservercore') -eq -1 -or $images.indexOf('microsoft/nanoserver') -eq -1) { throw "Images are incomplete!"; }
+- ps: if ($images.length -ne 7) { throw "Wrong number of images!"; }
+- ps: if ($images[0].indexOf('microsoft/windowsservercore') -eq -1 -or $images[2].indexOf('microsoft/nanoserver') -eq -1) { throw "Images are incomplete!"; }
 
 - ps: $run1 = (docker run microsoft/windowsservercore cmd /c dir)
 - ps: $run1
-- ps: if ($run1.indexOf('Directory of C:\') - eq -1) { throw "Error running microsoft/windowsservercore container"; }
+- ps: if ($run1[3].indexOf('Directory of C:\') - eq -1) { throw "Error running microsoft/windowsservercore container"; }
 
 - ps: $run2 = (docker run microsoft/nanoserver cmd /c dir)
 - ps: $run2
-- ps: if ($run2.indexOf('Directory of C:\') - eq -1) { throw "Error running microsoft/nanoserver container"; }
+- ps: if ($run2[3].indexOf('Directory of C:\') - eq -1) { throw "Error running microsoft/nanoserver container"; }
 
 - ps: docker ps -a -q
 
