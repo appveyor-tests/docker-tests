@@ -3,6 +3,8 @@ test_script:
 
 - ps: $images = (docker images)
 - ps: $images
+- ps: $images.indexOf('microsoft/windowsservercore')
+- ps: $images.indexOf('microsoft/nanoserver')
 - ps: if ($images.indexOf('microsoft/windowsservercore') -eq -1 -or $images.indexOf('microsoft/nanoserver') -eq -1) { throw "Images are incomplete!"; }
 
 - ps: $run1 = (docker run microsoft/windowsservercore cmd /c dir)
