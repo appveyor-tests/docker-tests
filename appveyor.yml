@@ -1,7 +1,7 @@
 test_script:
 - where docker-compose
 
-
+- docker run microsoft/nanoserver:1709 cmd /c dir
 
 - ps: $images = (docker images)
 - ps: $images
