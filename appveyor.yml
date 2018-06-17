@@ -1,10 +1,12 @@
 test_script:
 - where docker-compose
 
+
+
 - ps: $images = (docker images)
 - ps: $images
-- ps: if ($images.length -ne 7) { throw "Wrong number of images!"; }
-- ps: if ($images[1].indexOf('microsoft/windowsservercore') -eq -1 -or $images[3].indexOf('microsoft/nanoserver') -eq -1) { throw "Images are incomplete!"; }
+#- ps: if ($images.length -ne 7) { throw "Wrong number of images!"; }
+#- ps: if ($images[1].indexOf('microsoft/windowsservercore') -eq -1 -or $images[3].indexOf('microsoft/nanoserver') -eq -1) { throw "Images are incomplete!"; }
 
 - ps: $run1 = (docker run microsoft/windowsservercore cmd /c dir)
 - ps: $run1
