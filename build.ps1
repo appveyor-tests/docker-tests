@@ -1,4 +1,5 @@
-where docker-compose
+cmd /c where docker-compose
+if ($LastExitCode -ne 0) {$host.SetShouldExit($LastExitCode)}
 $images = (docker images)
 $images
 if ($images.length -ne 7) { throw "Wrong number of images!"; }
