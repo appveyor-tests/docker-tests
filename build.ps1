@@ -1,4 +1,4 @@
-Write-Output cmd /c where docker-compose
+Write-Output (cmd /c where docker-compose)
 $LastExitCode
 if ($LastExitCode -ne 0) {$host.SetShouldExit($LastExitCode)}
 $images = (docker images)
