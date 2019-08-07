@@ -1,7 +1,6 @@
 echo "Path to docker-compose:"
 Write-Output (cmd /c where docker-compose)
-echo "Print $LastExitCode"
-$LastExitCode
+echo "Print LastExitCode =  $LastExitCode"
 if ($LastExitCode -ne 0) {$host.SetShouldExit($LastExitCode)}
 $images = (docker images)
 $images
