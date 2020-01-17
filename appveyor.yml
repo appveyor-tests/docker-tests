@@ -4,7 +4,7 @@ test_script:
 
 - ps: $images = (docker images --digests)
 - ps: $images
-- ps: if ($images.length -ne 2) { throw "Wrong number of images!"; }
+- ps: if ($images.length -ne 3) { throw "Wrong number of images!"; }
 #- ps: if ($images[1].indexOf('microsoft/windowsservercore') -eq -1 -or $images[3].indexOf('microsoft/nanoserver') -eq -1) { throw "Images are incomplete!"; }
 
 - ps: $run1 = (docker run mcr.microsoft.com/windows/servercore:ltsc2016 cmd /c dir)
