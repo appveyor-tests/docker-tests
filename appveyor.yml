@@ -21,3 +21,6 @@ test_script:
 - ps: if ($containers.length -ne 2) { throw "Wrong number of containers!"; }
 
 build: off
+
+on_failure:
+- ps: Start-Sleep -s 1200
