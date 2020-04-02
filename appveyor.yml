@@ -1,6 +1,6 @@
 test_script:
 - docker-compose --version
-- ps: Start-Sleep -s 20
+- ps: Start-Sleep -s 5
 - docker version
 
 - ps: $images = (docker images --digests)
