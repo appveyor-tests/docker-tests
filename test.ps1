@@ -32,7 +32,7 @@ if ($daemonConfig.experimental) {
 # Testing Linux mode
 if (Test-Path "$env:USERPROFILE\Documents\WindowsPowerShell\Modules\docker-appveyor") {
   Write-Host "Testing Linux mode..." -ForegroundColor Cyan
-  $results = (docker run --rm -v "C:\Users\:/windows_users" busybox ls /disk_c) -join "`n"
+  $results = (docker run --rm -v "C:\Users\:/windows_users" busybox ls /windows_users) -join "`n"
   $results
   if ($results.indexOf('appveyor') -eq -1) { throw "Error running busybox in Linux mode"; }  
 }
