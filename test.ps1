@@ -21,16 +21,16 @@ $containers
 if ($containers.length -ne 2) { throw "Wrong number of containers!"; }
 
 # Testing LCOW mode if Experimental is set
-Write-Host "Testing LCOW..." -ForegroundColor Cyan
+<#Write-Host "Testing LCOW..." -ForegroundColor Cyan
 $daemonConfig = Get-Content "$env:programdata\docker\config\daemon.json" | ConvertFrom-Json
 if ($daemonConfig.experimental) {
   $results = (docker run --rm -v "$env:USERPROFILE`:/user-profile" busybox ls /user-profile) -join "`n"
   if ($results.indexOf('Application Data') -eq -1) { throw "Error running busybox in LCOW mode"; }
-}
+}#>
 
 # Testing Linux mode
+Switch-DockerLinux
 if ((Get-Command Switch-DockerLinux -ErrorAction SilentlyContinue) -ne $null) {
-  Switch-DockerLinux
   $results = (docker run --rm -v "C:\:/disk_c" busybox ls /disk_c) -join "`n"
   if ($results.indexOf('Program Files') -eq -1) { throw "Error running busybox in Linux mode"; }  
 }
