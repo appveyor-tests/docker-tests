@@ -1,7 +1,7 @@
 image: Visual Studio 2019
 
 test_script:
-- ps: test.ps1
+- ps: .\test.ps1
 
 build: off
 
