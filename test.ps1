@@ -29,7 +29,7 @@ if ($daemonConfig.experimental) {
 }
 
 # Testing Linux mode
-if (Get-Command Switch-DockerLinux -ErrorAction SilentlyContinue) {
+if ((Get-Command Switch-DockerLinux -ErrorAction SilentlyContinue) -ne $null) {
   Switch-DockerLinux
   $results = (docker run --rm -v "C:\:/disk_c" busybox ls /disk_c) -join "`n"
   if ($results.indexOf('Program Files') -eq -1) { throw "Error running busybox in Linux mode"; }  
