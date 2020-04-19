@@ -6,6 +6,8 @@ docker version
 
 $images = (docker images)
 $images
+$images.length
+($env:TOTAL_IMAGES + 1)
 if ($images.length -ne ($env:TOTAL_IMAGES + 1)) { throw "Wrong number of images!"; }
 
 $run1 = (docker run mcr.microsoft.com/windows/servercore:ltsc2016 cmd /c dir)
