@@ -1,24 +1,7 @@
+image: Visual Studio 2019
+
 test_script:
-- docker-compose --version
-- ps: Start-Sleep -s 5
-- docker version
-
-- ps: $images = (docker images --digests)
-- ps: $images
-- ps: if ($images.length -ne 3) { throw "Wrong number of images!"; }
-#- ps: if ($images[1].indexOf('microsoft/windowsservercore') -eq -1 -or $images[3].indexOf('microsoft/nanoserver') -eq -1) { throw "Images are incomplete!"; }
-
-- ps: $run1 = (docker run mcr.microsoft.com/windows/servercore:ltsc2016 cmd /c dir)
-- ps: $run1
-- ps: if ($run1[3].indexOf('Directory of C:\') -eq -1) { throw "Error running mcr.microsoft.com/windows/servercore:ltsc2016 container"; }
-
-- ps: $run2 = (docker run mcr.microsoft.com/windows/nanoserver:sac2016 cmd /c dir)
-- ps: $run2
-- ps: if ($run2[3].indexOf('Directory of C:\') -eq -1) { throw "Error running mcr.microsoft.com/windows/nanoserver:sac2016 container"; }
-
-- ps: $containers = (docker ps -a -q)
-- ps: $containers
-- ps: if ($containers.length -ne 2) { throw "Wrong number of containers!"; }
+- ps: test.ps1
 
 build: off
 
