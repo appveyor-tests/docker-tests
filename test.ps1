@@ -1,7 +1,7 @@
 $ErrorActionPreference = "Stop"
 
 docker-compose --version
-Start-Sleep -s 20
+Start-Sleep -s 10
 docker version
 
 $images = (docker images)
