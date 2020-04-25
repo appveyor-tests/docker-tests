@@ -4,7 +4,7 @@ docker-compose --version
 Start-Sleep -s 10
 docker version
 
-$images = (docker images)
+$images = (docker images --digests)
 $images
 if ($images.length -ne ([int]$env:TOTAL_IMAGES + 1)) { throw "Wrong number of images!"; }
 
