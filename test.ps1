@@ -20,6 +20,9 @@ $containers = (docker ps -a -q)
 $containers
 if ($containers.length -ne 2) { throw "Wrong number of containers!"; }
 
+# Check "old" host records
+Get-Content "$env:windir\System32\drivers\etc\hosts"
+
 # Testing LCOW mode if Experimental is set
 $daemonConfig = Get-Content "$env:programdata\docker\config\daemon.json" | ConvertFrom-Json
 if ($daemonConfig.experimental) {
