@@ -24,6 +24,7 @@ if ($containers.length -ne 2) { throw "Wrong number of containers!"; }
 Get-Content "$env:windir\System32\drivers\etc\hosts"
 
 # Testing LCOW mode if Experimental is set
+Get-ChildItem -Path $env:programdata\docker -recurse | select FullName
 $daemonConfig = Get-Content "$env:programdata\docker\config\daemon.json" | ConvertFrom-Json
 if ($daemonConfig.experimental) {
   Write-Host "Testing LCOW..." -ForegroundColor Cyan
