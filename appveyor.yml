@@ -1,16 +1,4 @@
 image: Visual Studio 2019
-
-install: 
-- ps: |
-    Write-Host "Stopping Docker"
-    Stop-Service docker
-
-    Write-Host "Re-registering Docker with experimental features enabled"
-    dockerd --unregister-service
-    dockerd --register-service --experimental
-
-    Write-Host "Starting Docker"
-    Start-Service docker
     
 test_script:
 - ps: .\test.ps1
