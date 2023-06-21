@@ -1,16 +1,5 @@
 $ErrorActionPreference = "Stop"
 
-Write-Host "Setting experimental mode"
-$configPath = "$env:programdata\docker\config\daemon.json"
-if (Test-Path $configPath) {
-  $daemonConfig = Get-Content $configPath | ConvertFrom-Json
-  $daemonConfig | Add-Member NoteProperty "experimental" $true -force
-  $daemonConfig | ConvertTo-Json -Depth 20 | Set-Content -Path $configPath
-} else {
-  New-Item "$env:programdata\docker\config" -ItemType Directory -Force | Out-Null
-  Set-Content -Path $configPath -Value '{ "experimental": true }'
-}
-
 docker-compose --version
 Start-Sleep -s 30
 docker version
@@ -35,7 +24,6 @@ if ($containers.length -ne 2) { throw "Wrong number of containers!"; }
 Get-Content "$env:windir\System32\drivers\etc\hosts"
 
 # Testing LCOW mode if Experimental is set
-Get-Content "$env:programdata\docker\config\daemon.json"
 $daemonConfig = Get-Content "$env:programdata\docker\config\daemon.json" | ConvertFrom-Json
 if ($daemonConfig.experimental) {
   Write-Host "Testing LCOW..." -ForegroundColor Cyan
