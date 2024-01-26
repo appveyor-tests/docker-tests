@@ -12,11 +12,11 @@ if ($images.length -ne ([int]$env:TOTAL_IMAGES + 1)) { throw "Wrong number of im
 Start-Sleep -s 20
 docker version -f '{{.Server.Os}}'
 
-$run1 = (docker run mcr.microsoft.com/windows/servercore:ltsc2019 cmd /c dir)
+$run1 = (docker run --isolation=hyperv mcr.microsoft.com/windows/servercore:ltsc2019 cmd /c dir)
 $run1
 if ($run1[3].indexOf('Directory of C:\') -eq -1) { throw "Error running mcr.microsoft.com/windows/servercore:ltsc2019 container"; }
 
-$run2 = (docker run mcr.microsoft.com/windows/nanoserver:1809 cmd /c dir)
+$run2 = (docker run --isolation=hyperv mcr.microsoft.com/windows/nanoserver:1809 cmd /c dir)
 $run2
 if ($run2[3].indexOf('Directory of C:\') -eq -1) { throw "Error running mcr.microsoft.com/windows/nanoserver:1809 container"; }
 
