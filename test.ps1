@@ -8,6 +8,10 @@ $images = (docker images --digests)
 $images
 if ($images.length -ne ([int]$env:TOTAL_IMAGES + 1)) { throw "Wrong number of images!"; }
 
+& $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchWindowsEngine
+Start-Sleep -s 20
+docker version -f '{{.Server.Os}}'
+
 $run1 = (docker run mcr.microsoft.com/windows/servercore:ltsc2019 cmd /c dir)
 $run1
 if ($run1[3].indexOf('Directory of C:\') -eq -1) { throw "Error running mcr.microsoft.com/windows/servercore:ltsc2019 container"; }
