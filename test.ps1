@@ -23,6 +23,10 @@ $containers = (docker ps -a -q)
 $containers
 if ($containers.length -ne 2) { throw "Wrong number of containers!"; }
 
+& $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchLinuxEngine
+Start-Sleep -s 30
+$containers = (docker ps -a -q)
+$containers
 # Check "old" host records
 Get-Content "$env:windir\System32\drivers\etc\hosts"
 
