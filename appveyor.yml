@@ -1,5 +1,7 @@
 image: Visual Studio 2019
-    
+
+install:
+- ps: "Restart-Service docker"
 test_script:
 - ps: .\test.ps1
 
