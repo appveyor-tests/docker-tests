@@ -1,5 +1,7 @@
-image: Visual Studio 2019
-
+#image: Visual Studio 2019
+init:
+- ps: Write-Host $env:APPVEYOR_BUILD_WORKER_IMAGE
+- ps: Write-Host $env:APPVEYOR_BUILD_WORKER_CLOUD
 install:
 - ps: "Restart-Service docker"
 test_script:
