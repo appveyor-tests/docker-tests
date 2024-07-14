@@ -3,8 +3,8 @@ init:
 - ps: Write-Host $env:APPVEYOR_BUILD_WORKER_IMAGE
 - ps: Write-Host $env:APPVEYOR_BUILD_WORKER_CLOUD
 install:
-- ps: "Restart-Service docker"
 test_script:
+- ps: "Restart-Service docker"
 - ps: .\test.ps1
 
 build: off
