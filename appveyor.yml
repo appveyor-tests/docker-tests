@@ -4,7 +4,7 @@ init:
 - ps: Write-Host $env:APPVEYOR_BUILD_WORKER_CLOUD
 install:
 test_script:
-- ps: "Restart-Service docker"
+#- ps: "Restart-Service docker"
 - ps: .\test.ps1
 
 build: off
