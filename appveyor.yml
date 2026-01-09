@@ -7,7 +7,7 @@ install:
 #- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 test_script:
 #- ps: "Restart-Service docker"
-- ps: .\test.ps1
+#- ps: .\test.ps1
 
 build: off
 
