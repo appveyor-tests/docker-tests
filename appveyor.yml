@@ -1,4 +1,8 @@
+
 #image: Visual Studio 2019
+environment:
+  appveyor_build_worker_cloud: bakery-azure-westus
+  appveyor_build_worker_image: ws2022-master-azure-westus
 init:
 - ps: Write-Host $env:APPVEYOR_BUILD_WORKER_IMAGE
 - ps: Write-Host $env:APPVEYOR_BUILD_WORKER_CLOUD
