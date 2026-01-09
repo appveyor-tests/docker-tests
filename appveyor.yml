@@ -1,5 +1,6 @@
 
-#image: Visual Studio 2019
+image: ws2022-master-azure-westus
+build_cloud: bakery-azure-westus
 environment:
   appveyor_build_worker_cloud: bakery-azure-westus
   appveyor_build_worker_image: ws2022-master-azure-westus
