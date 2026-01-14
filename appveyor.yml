@@ -8,7 +8,9 @@ init:
 - ps: Write-Host $env:APPVEYOR_BUILD_WORKER_IMAGE
 - ps: Write-Host $env:APPVEYOR_BUILD_WORKER_CLOUD
 install:
-  #- ps: "Restart-Service docker"
+  - ps: "mkdir -Force C:\\tmp"
+  - ps: Start-Sleep -s 60
+  - ps: "Restart-Service docker"
 
   # Switch to Docker Linux containers
   - ps: |
