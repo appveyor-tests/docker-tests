@@ -8,7 +8,6 @@ init:
 - ps: Write-Host $env:APPVEYOR_BUILD_WORKER_IMAGE
 - ps: Write-Host $env:APPVEYOR_BUILD_WORKER_CLOUD
 install:
-  - ps: "mkdir -Force C:\\tmp"
   - ps: Start-Sleep -s 60
   - ps: "Restart-Service docker"
 
@@ -28,7 +27,7 @@ install:
   - "docker info"
   - "docker version"
 
-  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+  #- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 test_script:
 #- ps: "Restart-Service docker"
 #- ps: .\test.ps1
