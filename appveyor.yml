@@ -8,7 +8,24 @@ init:
 - ps: Write-Host $env:APPVEYOR_BUILD_WORKER_IMAGE
 - ps: Write-Host $env:APPVEYOR_BUILD_WORKER_CLOUD
 install:
-  - ps: docker info
+  - ps: "Restart-Service docker"
+
+  # Switch to Docker Linux containers
+  - ps: |
+      $dockerCliPath = "$Env:ProgramFiles\Docker\Docker\DockerCli.exe"
+      if (Test-Path $dockerCliPath) {
+        & $dockerCliPath -SwitchLinuxEngine
+        Write-Host "Docker successfully switched to Linux container mode"
+      } else {
+        Write-Host "DockerCli.exe not found at expected location. Installing tree and exploring Docker directory structure..."
+        choco install tree
+        tree "$Env:ProgramFiles\Docker" /F /A
+        Write-Host "Build stopped for Docker CLI investigation."
+        exit 1
+      }
+  - "docker info"
+  - "docker version"
+
 #- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 test_script:
 #- ps: "Restart-Service docker"
